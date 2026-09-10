@@ -24,6 +24,8 @@
       }
     } else {
       students = [...INITIAL_STUDENTS];
+
+      
       saveData();
     }
   }

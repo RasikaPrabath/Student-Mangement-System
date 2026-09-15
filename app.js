@@ -12,7 +12,7 @@
   let students = [];
   let currentStudent = null;
   let activeTermIndex = 1;
-  
+
 
   // 1. Data Store
 
@@ -20,6 +20,7 @@
 
   function initData() {
     const saved = localStorage.getItem(STORAGE_KEY);
+    
     if (saved) {
 
       try {

@@ -7,10 +7,11 @@
   'use strict';
 
   const STORAGE_KEY = 'galle_academy_seamless_v3';
-  
+
   const THEME_KEY = 'galle_academy_theme_pref';
 
   let students = [];
+  
   let currentStudent = null;
   let activeTermIndex = 1;
 

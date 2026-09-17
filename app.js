@@ -11,8 +11,9 @@
   const THEME_KEY = 'galle_academy_theme_pref';
 
   let students = [];
-  
+
   let currentStudent = null;
+  
   let activeTermIndex = 1;
 
 

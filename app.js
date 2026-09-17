@@ -7,6 +7,7 @@
   'use strict';
 
   const STORAGE_KEY = 'galle_academy_seamless_v3';
+  
   const THEME_KEY = 'galle_academy_theme_pref';
 
   let students = [];
@@ -31,7 +32,7 @@
     const saved = localStorage.getItem(STORAGE_KEY);
 
 
-    
+
 
 
 

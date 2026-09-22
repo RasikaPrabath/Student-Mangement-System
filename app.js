@@ -20,8 +20,8 @@
 
   function initData() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    
 
+[]
 
 
     if (saved) {

@@ -13,11 +13,12 @@
   let students = [];
 
   let currentStudent = null;
-  
+
   let activeTermIndex = 1;
 
 
   // 1. Data Store
+  
 
 
 

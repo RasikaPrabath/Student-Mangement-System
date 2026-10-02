@@ -1,10 +1,11 @@
 /**
  * Galle Academy - Seamless Modern Student Information OS
+ * 
  * Clean, lightweight, distraction-free logic
  */
 
 (function () {
-  
+
   'use strict';
 
   const STORAGE_KEY = 'galle_academy_seamless_v3';

@@ -4,6 +4,7 @@
  */
 
 (function () {
+  
   'use strict';
 
   const STORAGE_KEY = 'galle_academy_seamless_v3';
@@ -17,7 +18,7 @@
 
 
   let activeTermIndex = 1;
-  
+
 
 
 

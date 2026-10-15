@@ -15,12 +15,13 @@
 
   // 1. Data Store
 
+  
 
   function initData() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        
+
         students = JSON.parse(saved);
       } catch (e) {
         students = [...INITIAL_STUDENTS];

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galle Academy • Student Profile & Academic Dossier</title>
+  <meta name="description" content="Simple, modern, seamless student information and academic management system for Galle Academy.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-nav-bar">
+      <div class="nav-brand" id="brand-home-btn" title="Galle Academy">
+        <img src="assets/school_crest.jpg" alt="Galle Academy Crest" class="school-emblem">
+        <div class="brand-text-block">
+          <h1>Galle Academy</h1>
+          <p>Student Profile & Academic Portal</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn-pill" id="btn-print-profile" title="Print student report">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Print</span>
+        </button>
+
+        <button class="btn-pill" id="btn-open-add-student">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Register</span>
+        </button>
+
+        <button class="btn-pill" id="btn-open-csv-modal" title="CSV Data Exchange">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>CSV</span>
+        </button>
+
+        <button class="btn-icon-only" id="theme-toggle-btn" title="Toggle Light / Dark Mode">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Spotlight Search Experience -->
+    <section class="spotlight-search-container">
+      <div class="spotlight-bar">
+        <svg class="spotlight-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input 
+          type="text" 
+          id="student-search-input" 
+          class="spotlight-input" 
+          placeholder="Search by admission number (e.g. GA-4821) or student name..."
+          autocomplete="off"
+        >
+        <kbd class="spotlight-shortcut">/</kbd>
+      </div>
+
+      <!-- Quick Chips -->
+      <div class="quick-jump-chips">
+        <span class="jump-label">Recent:</span>
+        <button type="button" class="seamless-chip quick-chip" data-adm="GA-4821">GA-4821 (Kavindu)</button>
+        <button type="button" class="seamless-chip quick-chip" data-adm="GA-5104">GA-5104 (Chamodi)</button>
+        <button type="button" class="seamless-chip quick-chip" data-adm="GA-3982">GA-3982 (Tharindu)</button>
+        <button type="button" class="seamless-chip quick-chip" data-adm="GA-6230">GA-6230 (Nadeesha)</button>
+      </div>
+
+      <!-- Autocomplete Popover -->
+      <div class="spotlight-popover" id="search-autocomplete-box"></div>
+    </section>
+
+    <!-- Seamless Student Profile Sheet -->
+    <main class="seamless-profile-sheet" id="profile-sheet">
+      
+      <!-- Profile Header Area -->
+      <div class="profile-header-area">
+        <div class="profile-identity">
+          <div class="profile-avatar-frame">
+            <img id="profile-photo" src="assets/student_1.jpg" alt="Student Avatar" class="profile-avatar-img">
+            <span class="active-pulse" title="Active Student"></span>
+          </div>
+
+          <div class="profile-text-meta">
+            <h2 id="profile-fullname">Kavindu Prabath Mendis</h2>
+            <div class="profile-sinhala-line sinhala" id="profile-sinhala-name">කාවින්ද ප්‍රභාත් මෙන්ඩිස්</div>
+            
+            <div class="profile-tags-strip">
+              <span class="badge-tag badge-adm" id="btn-copy-adm" title="Copy admission number">
+                <span id="profile-adm-no">GA-4821</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </span>
+              <span class="badge-tag" id="profile-grade">Grade 13-A</span>
+              <span class="badge-tag" id="profile-stream">Physical Science (Maths)</span>
+              <span class="badge-tag badge-house" id="profile-house" style="background:#dc2626;">Gemunu House</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-sheet-actions">
+          <button class="btn-pill" id="btn-edit-student">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span>Edit</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4-Stat Minimalist Divider Strip -->
+      <div class="stats-strip">
+        <div class="stat-cell">
+          <div class="stat-label">Term Average</div>
+          <div class="stat-number" id="kpi-average">88.4%</div>
+          <div class="stat-sub" id="kpi-term-name">Term 2 - 2026</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-label">Class Rank</div>
+          <div class="stat-number" id="kpi-rank">1st</div>
+          <div class="stat-sub" id="kpi-class-size">out of 42 students</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-label">Attendance</div>
+          <div class="stat-number" id="kpi-attendance">96.6%</div>
+          <div class="stat-sub" id="kpi-present-days">174 / 180 Days</div>
+        </div>
+
+        <div class="stat-cell">
+          <div class="stat-label">House Points</div>
+          <div class="stat-number" id="kpi-conduct">45 pts</div>
+          <div class="stat-sub" id="kpi-house-points">Exemplary Conduct</div>
+        </div>
+      </div>
+
+      <!-- Seamless Tabs Navigation -->
+      <nav class="tabs-navigation-strip">
+        <button class="tab-nav-link active" data-tab="tab-overview">Overview</button>
+        <button class="tab-nav-link" data-tab="tab-academics">Academics & Examination</button>
+        <button class="tab-nav-link" data-tab="tab-activities">Extracurricular & Honors</button>
+        <button class="tab-nav-link" data-tab="tab-idcard">Digital ID</button>
+      </nav>
+
+      <!-- TAB 1: OVERVIEW -->
+      <section class="tab-pane-seamless active" id="tab-overview">
+        <div class="info-columns-layout">
+          <div>
+            <div class="info-section-header">Student Record</div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Full Name</span>
+              <span class="row-val" id="info-fullname">Kavindu Prabath Mendis</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Name with Initials</span>
+              <span class="row-val" id="info-initials">K. P. Mendis</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Sinhala Name</span>
+              <span class="row-val sinhala" id="info-sinhala">කාවින්ද ප්‍රභාත් මෙන්ඩිස්</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Date of Birth</span>
+              <span class="row-val" id="info-dob">2008-04-18</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">National ID / BC</span>
+              <span class="row-val" style="font-family:var(--font-mono);" id="info-nic">200810902341</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Gender & Blood</span>
+              <span class="row-val" id="info-gender-blood">Male | Blood O+</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Admission Date</span>
+              <span class="row-val" id="info-adm-date">2014-01-10</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Address</span>
+              <span class="row-val" id="info-address">No. 42/B, Light House Street, Fort, Galle</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="info-section-header">Guardian & Family</div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Father / Primary</span>
+              <span class="row-val" id="info-guardian-name">Sunil Mendis</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Occupation</span>
+              <span class="row-val" id="info-guardian-occ">Senior Marine Engineer (Galle Harbour)</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Mother's Name</span>
+              <span class="row-val" id="info-mother-name">Damayanthi Perera</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Guardian Phone</span>
+              <span class="row-val" style="font-family:var(--font-mono);" id="info-guardian-phone">+94 71 889 2314</span>
+            </div>
+            <div class="clean-key-val-row">
+              <span class="row-key">Emergency Contact</span>
+              <span class="row-val" style="font-family:var(--font-mono); color:var(--accent-rose);" id="info-emergency">+94 71 889 2314</span>
+            </div>
+
+            <div class="teacher-quote">
+              <span id="info-teacher-remarks">"Outstanding leader, academically exceptional and consistently exemplifies the spirit of the Academy."</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ACADEMICS -->
+      <section class="tab-pane-seamless" id="tab-academics">
+        <div class="term-selector-row" id="term-selector-buttons"></div>
+
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Subject</th>
+              <th style="text-align:center;">Score</th>
+              <th style="text-align:center;">Grade</th>
+              <th>Status</th>
+              <th>Faculty</th>
+            </tr>
+          </thead>
+          <tbody id="academic-marks-tbody"></tbody>
+        </table>
+
+        <div>
+          <div class="info-section-header" style="margin-bottom:0.75rem;">Subject Mastery Comparison</div>
+          <div class="progress-list-wrap" id="subject-performance-bars"></div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ACTIVITIES -->
+      <section class="tab-pane-seamless" id="tab-activities">
+        <div class="activities-split-grid">
+          <div>
+            <div class="info-section-header">Sports & Athletics</div>
+            <div id="sports-list-container"></div>
+          </div>
+
+          <div>
+            <div class="info-section-header">Societies & Leadership</div>
+            <div id="clubs-list-container"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <div class="info-section-header">Major Accolades & Distinctions</div>
+          <div id="achievements-list-container"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: DIGITAL ID -->
+      <section class="tab-pane-seamless" id="tab-idcard">
+        <div class="id-card-clean-wrapper">
+          <div class="id-card-frame" id="interactive-id-card" title="Click to flip ID card">
+            <div class="id-card-flippable">
+              
+              <!-- Front -->
+              <div class="card-face face-front">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <img src="assets/school_crest.jpg" style="width:28px; height:28px; border-radius:4px;" alt="Crest">
+                    <div>
+                      <div style="font-weight:700; font-size:0.8rem;">Galle Academy</div>
+                      <div style="font-size:0.6rem; color:var(--text-muted);">Official Student Identity</div>
+                    </div>
+                  </div>
+                  <span class="badge-tag" style="font-size:0.65rem;">2026 PASS</span>
+                </div>
+
+                <div style="display:flex; gap:1rem; align-items:center; margin:0.5rem 0;">
+                  <img id="id-card-photo" src="assets/student_1.jpg" style="width:68px; height:78px; object-fit:cover; border-radius:8px; border:1px solid var(--border);" alt="ID">
+                  <div>
+                    <div style="font-size:0.95rem; font-weight:700;" id="id-card-name">Kavindu Prabath Mendis</div>
+                    <div class="sinhala" style="font-size:0.75rem; color:var(--text-muted);" id="id-card-sinhala">කාවින්ද ප්‍රභාත් මෙන්ඩිස්</div>
+                    <div style="font-size:0.75rem; color:var(--accent-blue); font-weight:600; margin-top:2px;" id="id-card-grade">Grade 13-A • Science</div>
+                    <div style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; margin-top:2px;" id="id-card-adm">GA-4821</div>
+                  </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; font-size:0.65rem; color:var(--text-subtle); border-top:1px solid var(--border-subtle); padding-top:0.4rem;">
+                  <span>Galle, Southern Province</span>
+                  <span>Valid Academic Year 2026</span>
+                </div>
+              </div>
+
+              <!-- Back -->
+              <div class="card-face face-back">
+                <div style="height:20px; background:var(--accent-brand); border-radius:4px; margin-bottom:0.5rem;"></div>
+                <div style="font-size:0.75rem; line-height:1.5;">
+                  <p><strong>Emergency:</strong> <span id="id-card-emergency" style="font-family:var(--font-mono); color:var(--accent-rose);">+94 71 889 2314</span></p>
+                  <p><strong>Address:</strong> <span id="id-card-address">Fort, Galle</span></p>
+                  <p><strong>House:</strong> <span id="id-card-house">Gemunu</span> | <strong>Blood:</strong> <span id="id-card-blood">O+</span></p>
+                </div>
+                <div style="font-family:var(--font-mono); font-size:0.7rem; text-align:center; padding:0.3rem; border:1px solid var(--border); border-radius:4px; letter-spacing:0.2em; font-weight:bold;" id="id-card-barcode">
+                  *GA-4821*
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-subtle); margin-top:0.85rem;">Click card to flip</p>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- REGISTER / EDIT STUDENT MODAL -->
+  <div class="modal-backdrop-clean" id="student-modal">
+    <div class="modal-sheet">
+      <div class="modal-header-strip">
+        <h3 id="modal-title">Student Registration</h3>
+        <button type="button" class="btn-icon-only" id="btn-close-modal">✕</button>
+      </div>
+      <form id="student-form" class="modal-body-content" onsubmit="return false;">
+        <input type="hidden" id="form-is-edit" value="false">
+        <div class="form-2col-grid">
+          <div class="form-item">
+            <label>Admission No *</label>
+            <input type="text" id="form-adm-no" class="minimal-input" placeholder="e.g. GA-7201" required>
+          </div>
+          <div class="form-item">
+            <label>Full Legal Name *</label>
+            <input type="text" id="form-fullname" class="minimal-input" placeholder="English name" required>
+          </div>
+          <div class="form-item">
+            <label>Sinhala Name</label>
+            <input type="text" id="form-sinhala-name" class="minimal-input" placeholder="සිංහල නම">
+          </div>
+          <div class="form-item">
+            <label>Grade / Class *</label>
+            <input type="text" id="form-grade" class="minimal-input" placeholder="e.g. Grade 12-A" required>
+          </div>
+          <div class="form-item">
+            <label>Stream</label>
+            <input type="text" id="form-stream" class="minimal-input" placeholder="e.g. Physical Science">
+          </div>
+          <div class="form-item">
+            <label>House</label>
+            <select id="form-house" class="minimal-input">
+              <option value="Gemunu">Gemunu</option>
+              <option value="Parakrama">Parakrama</option>
+              <option value="Vijaya">Vijaya</option>
+              <option value="Tissa">Tissa</option>
+            </select>
+          </div>
+          <div class="form-item">
+            <label>Date of Birth</label>
+            <input type="date" id="form-dob" class="minimal-input">
+          </div>
+          <div class="form-item">
+            <label>Gender</label>
+            <select id="form-gender" class="minimal-input">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-item col-full">
+            <label>Residential Address</label>
+            <input type="text" id="form-address" class="minimal-input" placeholder="Street, Town, Galle">
+          </div>
+          <div class="form-item">
+            <label>Guardian Name</label>
+            <input type="text" id="form-guardian-name" class="minimal-input" placeholder="Guardian">
+          </div>
+          <div class="form-item">
+            <label>Guardian Phone</label>
+            <input type="text" id="form-guardian-phone" class="minimal-input" placeholder="+94 77 ...">
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer-strip">
+        <button type="button" class="btn-pill" id="btn-cancel-modal">Cancel</button>
+        <button type="button" class="btn-pill btn-pill-primary" id="btn-save-student">Save Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSV MODAL -->
+  <div class="modal-backdrop-clean" id="csv-modal">
+    <div class="modal-sheet">
+      <div class="modal-header-strip">
+        <h3>Excel / CSV Data Management</h3>
+        <button type="button" class="btn-icon-only" id="btn-close-csv-modal">✕</button>
+      </div>
+      <div class="modal-body-content">
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.25rem;">
+          Import records from an Excel-exported CSV or download the entire student registry.
+        </p>
+
+        <div style="border:1px dashed var(--border); padding:1.5rem; border-radius:var(--radius-md); text-align:center; margin-bottom:1rem;">
+          <input type="file" id="csv-file-input" accept=".csv" style="display:none;">
+          <button type="button" class="btn-pill btn-pill-primary" onclick="document.getElementById('csv-file-input').click();">
+            Upload CSV File
+          </button>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.5rem;">Select your school's .csv roster file</div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem;">
+          <button type="button" class="btn-pill" id="btn-export-csv" style="flex:1; justify-content:center;">
+            Export to CSV
+          </button>
+          <button type="button" class="btn-pill" id="btn-reset-data" style="flex:1; justify-content:center;">
+            Reset Defaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Shelf -->
+  <div class="clean-toast-shelf" id="toast-container"></div>
+
+  <script src="students_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
